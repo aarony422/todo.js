@@ -1,4 +1,6 @@
-/* Version 5 */
+/* Version 6
+ * ToggleAll
+*/
 var todoList = {
   todos: [],
   displayTodos: function() {
@@ -35,35 +37,26 @@ var todoList = {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
     this.displayTodos();
+  },
+  toggleAll: function() {
+    var totalTodos = this.todos.length;
+    var completedTodos = 0;
+    // Get number of completed todos
+    for (var i = 0; i < totalTodos; i++) {
+      if (this.todos[i].completed === true) {
+        completedTodos++;
+      }
+    }
+    // If everything is true, make everything false
+    if (completedTodos === totalTodos) {
+      for (var i = 0; i < totalTodos; i++) {
+        this.todos[i].completed = false;
+      }
+    } else {
+      for (var i = 0; i < totalTodos; i++) {
+        this.todos[i].completed = true;
+      }
+    }
+    this.displayTodos();
   }
 };
-
-
-
-/* Version 2
-
-var todos = ['item 1', 'item 2', 'item 3'];
-
-// function to display todos on console
-function displayTodos() {
-  console.log("My todos:", todos);
-}
-
-// function to add an item to todos
-function addTodo(item) {
-  todos.push(item);
-  displayTodos();
-}
-
-// function to modify item based on position in todo
-function changeTodo(position, newItem) {
-  todos[position] = newItem;
-  displayTodos();
-}
-
-// function to delete item based on position in todos
-function deleteTodo(position) {
-  todos.splice(position, 1);
-  displayTodos();
-}
-*/
