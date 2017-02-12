@@ -1,5 +1,5 @@
-/* Version 6
- * ToggleAll
+/* Version 7
+ * Display todos and toggle all button
 */
 var todoList = {
   todos: [],
@@ -18,6 +18,7 @@ var todoList = {
       }
     }
   },
+  // append a todo object to the todoList with todoText
   addTodo: function(todoText) {
     this.todos.push({
       todoText: todoText,
@@ -25,14 +26,19 @@ var todoList = {
     });
     this.displayTodos();
   },
+  // change todoText of todo object at a given position
   changeTodo: function(position, newTodoText) {
     this.todos[position].todoText = newTodoText;
     this.displayTodos();
   },
+  // splice out the todo object at given position
   deleteTodo: function(position) {
     this.todos.splice(position, 1);
     this.displayTodos();
   },
+  // toggles completed for all todo objects
+  // toggles all to false if all todos are completed
+  // otherwise, toggle all to true
   toggleCompleted: function(position) {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
@@ -60,3 +66,15 @@ var todoList = {
     this.displayTodos();
   }
 };
+
+// displayTodosButton with click event listener
+var displayTodosButton = document.getElementById('displayTodosBtn');
+displayTodosButton.addEventListener('click', function(){
+  todoList.displayTodos();
+});
+
+// toggleTodosButton with click event listener
+var toggleTodosButton = document.getElementById('toggleAllBtn');
+toggleTodosButton.addEventListener('click', function(){
+  todoList.toggleAll();
+});
