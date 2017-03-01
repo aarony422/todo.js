@@ -1,5 +1,5 @@
-/* Version 7
- * Display todos and toggle all button
+/* Version 8
+ * Refactored to use html onclick for event handling
 */
 var todoList = {
   todos: [],
@@ -67,14 +67,12 @@ var todoList = {
   }
 };
 
-// displayTodosButton with click event listener
-var displayTodosButton = document.getElementById('displayTodosBtn');
-displayTodosButton.addEventListener('click', function(){
-  todoList.displayTodos();
-});
-
-// toggleTodosButton with click event listener
-var toggleTodosButton = document.getElementById('toggleAllBtn');
-toggleTodosButton.addEventListener('click', function(){
-  todoList.toggleAll();
-});
+// handlers for onclick events
+var handlers = {
+  displayTodos: function(){
+    todoList.displayTodos();
+  },
+  toggleAll: function(){
+    todoList.toggleAll();
+  }
+};
