@@ -1,4 +1,11 @@
 body {
-  padding: 60px; }
+  padding: 60px;
+  background: #528AF8 no-repeat center center fixed;
+  background-image: linear-gradient(170deg, #6F72FD 0%, #528AF8 50%, #528AF8 60%, #6F72FD 100%);
+  background-size: vw 100%;
+  background-repeat: no-repeat; }
+
+#titleText {
+  color: white; }
 
 /*# sourceMappingURL=index.css.map */
