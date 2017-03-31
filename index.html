@@ -13,32 +13,38 @@
       <h1 id="titleText">Todo List</h1>
 
       <div>
-        <button onclick="handlers.displayTodos()">Display Todos</button>
-        <button onclick="handlers.toggleAll()">Toggle All</button>
+        <button id="displayTodos">Display Todos</button>
+        <button id="toggleAll">Toggle All</button>
       </div>
 
       <div>
-        <button onclick="handlers.addTodo()">Add</button>
+        <button id="addTodoBtn">Add</button>
         <input id="addTodoTextInput" type="text">
       </div>
 
       <div>
-        <button onclick="handlers.changeTodo()">Change Todo</button>
+        <button id="changeTodo">Change Todo</button>
         <input id="changeTodoPositionInput" type="number">
         <input id="changeTodoTextInput" type="text">
       </div>
 
       <div>
-        <button onclick="handlers.deleteTodo()">Delete</button>
+        <button id="deleteTodo">Delete</button>
         <input id="deleteTodoPositionInput" type="number">
       </div>
 
       <div>
-        <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+        <button id="toggleCompleted">Toggle Completed</button>
         <input id="toggleCompletedInput" type="number">
       </div>
 
+      <div>
+        <ul id="todosDisplay">
+        </ul>
+      </div>
+
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="todo.js"></script>
   </body>
 </html>
