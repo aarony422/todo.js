@@ -1,6 +1,8 @@
+var todoList;
+var view;
 $(document).ready(function(){
   // Model
-  var todoList = {
+  todoList = {
     todos: [],
     // append a todo object to the todoList with todoText
     addTodo: function(todoText) {
@@ -47,7 +49,7 @@ $(document).ready(function(){
   };
 
   // View
-  var view = {
+  view = {
     displayTodos: function() {
       // clear todosDisplay
       var ul = $("#todosDisplay");
@@ -57,12 +59,19 @@ $(document).ready(function(){
         for (var i = 0; i < todoList.todos.length; i++) {
           var item = todoList.todos[i];
           if (item.completed === true) {
-            ul.append('<li>[x] ' + item.todoText + '</li>');
+            var listItem = $('<li/>').text("[X] " + item.todoText).append(this.createDeleteButton());
+            ul.append(listItem);
           } else {
-            ul.append('<li>[ ] ' + item.todoText + '</li>');
+            var listItem = $('<li/>').text("[ ] " + item.todoText).append(this.createDeleteButton());
+            ul.append(listItem);
           }
         }
       }
+    },
+    createDeleteButton: function() {
+      return $('<button/>')
+              .addClass('deleteBtn')
+              .text('Delete');
     }
   };
 
