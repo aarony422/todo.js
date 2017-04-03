@@ -59,10 +59,16 @@ $(document).ready(function(){
         for (var i = 0; i < todoList.todos.length; i++) {
           var item = todoList.todos[i];
           if (item.completed === true) {
-            var listItem = $('<li/>').text("[X] " + item.todoText).append(this.createDeleteButton());
+            var listItem = $('<li/>')
+                            .attr({id : i})
+                            .text("[X] " + item.todoText)
+                            .append(this.createDeleteButton());
             ul.append(listItem);
           } else {
-            var listItem = $('<li/>').text("[ ] " + item.todoText).append(this.createDeleteButton());
+            var listItem = $('<li/>')
+                            .attr({id: i})
+                            .text("[ ] " + item.todoText)
+                            .append(this.createDeleteButton());
             ul.append(listItem);
           }
         }
