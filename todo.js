@@ -29,22 +29,21 @@ $(document).ready(function(){
     toggleAll: function() {
       var totalTodos = this.todos.length;
       var completedTodos = 0;
-      // Get number of completed todos
-      for (var i = 0; i < totalTodos; i++) {
-        if (this.todos[i].completed === true) {
+      // Get number of completed todos using forEach
+      this.todos.forEach(function(todo) {
+        if (todo.completed === true) {
           completedTodos++;
         }
-      }
+      });
+
       // If everything is true, make everything false
-      if (completedTodos === totalTodos) {
-        for (var i = 0; i < totalTodos; i++) {
-          this.todos[i].completed = false;
+      this.todos.forEach(function(todo) {
+        if (completedTodos === totalTodos) {
+          todo.completed = false;
+        } else {
+          todo.completed = true;
         }
-      } else {
-        for (var i = 0; i < totalTodos; i++) {
-          this.todos[i].completed = true;
-        }
-      }
+      });
     }
   };
 
@@ -90,11 +89,22 @@ $(document).ready(function(){
   });
 
   // Add todos
-  $("#addTodoBtn").click(function() {
+  function addTodo() {
     var addTodoTextInput = $("#addTodoTextInput");
     todoList.addTodo(addTodoTextInput.val());
     addTodoTextInput.val('');
     view.displayTodos();
+  }
+  // addTodoBtn pressed
+  $("#addTodoBtn").click(addTodo);
+  // Enter key pressed
+  $('#addTodoTextInput').keypress(function (e) {
+   var key = e.which;
+   if(key == 13)  // the enter key code
+    {
+      addTodo();
+      return false;
+    }
   });
 
   // changeTodo
@@ -107,14 +117,6 @@ $(document).ready(function(){
     view.displayTodos();
   });
 
-  // deleteTodo
-  $("#deleteTodo").click(function() {
-    var deleteTodoPositionInput = $("#deleteTodoPositionInput");
-    todoList.deleteTodo(parseInt(deleteTodoPositionInput.val(), 10));
-    deleteTodoPositionInput.val('');
-    view.displayTodos();
-  });
-
   // toggleCompleted
   $("#toggleCompleted").click(function() {
     var toggleCompletedInput = $('#toggleCompletedInput');
@@ -124,8 +126,11 @@ $(document).ready(function(){
   });
 
   // deleteBtn
+  // event delegation
   $("ul").click(function(event) {
-    todoList.deleteTodo(parseInt(event.target.parentNode.id));
+    if (event.target.className === 'deleteBtn'){
+      todoList.deleteTodo(parseInt(event.target.parentNode.id));
+    }
     view.displayTodos();
   });
 });
