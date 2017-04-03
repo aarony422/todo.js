@@ -122,4 +122,10 @@ $(document).ready(function(){
     toggleCompletedInput.val('');
     view.displayTodos();
   });
+
+  // deleteBtn
+  $("ul").click(function(event) {
+    todoList.deleteTodo(parseInt(event.target.parentNode.id));
+    view.displayTodos();
+  });
 });
