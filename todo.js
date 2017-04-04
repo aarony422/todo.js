@@ -59,13 +59,13 @@ $(document).ready(function(){
           if (todo.completed === true) {
             var listItem = $('<li/>')
                             .attr({id : position})
-                            .text("[X] " + todo.todoText)
+                            .append(this.createListItemButton("[X] " + todo.todoText))
                             .append(this.createDeleteButton());
             ul.append(listItem);
           } else {
             var listItem = $('<li/>')
                             .attr({id: position})
-                            .text("[ ] " + todo.todoText)
+                            .append(this.createListItemButton("[ ] " + todo.todoText))
                             .append(this.createDeleteButton());
             ul.append(listItem);
           }
@@ -77,6 +77,11 @@ $(document).ready(function(){
       return $('<button/>')
               .addClass('deleteBtn')
               .text('Delete');
+    },
+    createListItemButton: function(itemText) {
+      return $('<button/>')
+              .addClass('listItem')
+              .text(itemText);
     }
   };
 
@@ -133,6 +138,8 @@ $(document).ready(function(){
   $("ul").click(function(event) {
     if (event.target.className === 'deleteBtn'){
       todoList.deleteTodo(parseInt(event.target.parentNode.id));
+    } else if (event.target.className === 'listItem') {
+      todoList.toggleCompleted(parseInt(event.target.parentNode.id));
     }
     view.displayTodos();
   });
