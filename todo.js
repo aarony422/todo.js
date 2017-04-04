@@ -40,7 +40,7 @@ $(document).ready(function(){
       this.todos.forEach(function(todo) {
         if (completedTodos === totalTodos) {
           todo.completed = false;
-        } else {
+        } else { // make everything true
           todo.completed = true;
         }
       });
@@ -55,22 +55,22 @@ $(document).ready(function(){
       ul.empty();
 
       if (todoList.todos.length !== 0) {
-        for (var i = 0; i < todoList.todos.length; i++) {
-          var item = todoList.todos[i];
-          if (item.completed === true) {
+        todoList.todos.forEach(function(todo, position){
+          if (todo.completed === true) {
             var listItem = $('<li/>')
-                            .attr({id : i})
-                            .text("[X] " + item.todoText)
+                            .attr({id : position})
+                            .text("[X] " + todo.todoText)
                             .append(this.createDeleteButton());
             ul.append(listItem);
           } else {
             var listItem = $('<li/>')
-                            .attr({id: i})
-                            .text("[ ] " + item.todoText)
+                            .attr({id: position})
+                            .text("[ ] " + todo.todoText)
                             .append(this.createDeleteButton());
             ul.append(listItem);
           }
-        }
+        }, this); // "this" from outer scope is passed in as the "this" inside
+                  // the callback
       }
     },
     createDeleteButton: function() {
