@@ -91,9 +91,12 @@ $(document).ready(function(){
   // Add todos
   function addTodo() {
     var addTodoTextInput = $("#addTodoTextInput");
-    todoList.addTodo(addTodoTextInput.val());
-    addTodoTextInput.val('');
-    view.displayTodos();
+    var todoText = addTodoTextInput.val();
+    if (todoText) {
+      todoList.addTodo(addTodoTextInput.val());
+      addTodoTextInput.val('');
+      view.displayTodos();
+    }
   }
   // addTodoBtn pressed
   $("#addTodoBtn").click(addTodo);
