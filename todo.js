@@ -59,13 +59,15 @@ $(document).ready(function(){
           if (todo.completed === true) {
             var listItem = $('<li/>')
                             .attr({id : position})
-                            .append(this.createListItemButton("[X] " + todo.todoText))
+                            .append(this.createCompletedToggleButton("[X]"))
+                            .append(this.createListItemField(todo.todoText))
                             .append(this.createDeleteButton());
             ul.append(listItem);
           } else {
             var listItem = $('<li/>')
                             .attr({id: position})
-                            .append(this.createListItemButton("[ ] " + todo.todoText))
+                            .append(this.createCompletedToggleButton("[ ]"))
+                            .append(this.createListItemField(todo.todoText))
                             .append(this.createDeleteButton());
             ul.append(listItem);
           }
@@ -78,10 +80,18 @@ $(document).ready(function(){
               .addClass('deleteBtn')
               .text('Delete');
     },
-    createListItemButton: function(itemText) {
+    createCompletedToggleButton: function(completed) {
       return $('<button/>')
+              .addClass('completedBtn')
+              .text(completed);
+    },
+    createListItemField: function(listItemText) {
+      return $('<input/>')
               .addClass('listItem')
-              .text(itemText);
+              .attr({
+                type: "text",
+                value: listItemText
+              })
     }
   };
 
@@ -138,8 +148,10 @@ $(document).ready(function(){
   $("ul").click(function(event) {
     if (event.target.className === 'deleteBtn'){
       todoList.deleteTodo(parseInt(event.target.parentNode.id));
-    } else if (event.target.className === 'listItem') {
+    } else if (event.target.className === 'completedBtn') {
       todoList.toggleCompleted(parseInt(event.target.parentNode.id));
+    } else if (event.target.className === "listItem") {
+      // prompt user input
     }
     view.displayTodos();
   });
