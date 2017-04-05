@@ -51,25 +51,25 @@ $(document).ready(function(){
   view = {
     displayTodos: function() {
       // clear todosDisplay
-      var ul = $("#todosDisplay");
-      ul.empty();
+      var todoListDiv = $("#todosDisplay");
+      todoListDiv.empty();
 
       if (todoList.todos.length !== 0) {
         todoList.todos.forEach(function(todo, position){
           if (todo.completed === true) {
-            var listItem = $('<li/>')
+            var listItem = $('<div/>')
                             .attr({id : position})
                             .append(this.createCompletedToggleButton("[X]"))
                             .append(this.createListItemField(todo.todoText))
                             .append(this.createDeleteButton());
-            ul.append(listItem);
+            todoListDiv.append(listItem);
           } else {
-            var listItem = $('<li/>')
+            var listItem = $('<div/>')
                             .attr({id: position})
                             .append(this.createCompletedToggleButton("[ ]"))
                             .append(this.createListItemField(todo.todoText))
                             .append(this.createDeleteButton());
-            ul.append(listItem);
+            todoListDiv.append(listItem);
           }
         }, this); // "this" from outer scope is passed in as the "this" inside
                   // the callback
@@ -143,16 +143,28 @@ $(document).ready(function(){
     view.displayTodos();
   });
 
-  // deleteBtn
-  // event delegation
-  $("ul").click(function(event) {
-    if (event.target.className === 'deleteBtn'){
-      todoList.deleteTodo(parseInt(event.target.parentNode.id));
-    } else if (event.target.className === 'completedBtn') {
-      todoList.toggleCompleted(parseInt(event.target.parentNode.id));
-    } else if (event.target.className === "listItem") {
-      // prompt user input
-    }
+  // toggleCompleted
+  $("#todosDisplay").on("click", ".completedBtn", function(event) {
+    todoList.toggleCompleted(parseInt(event.target.parentNode.id));
     view.displayTodos();
   });
+
+  // deleteTodo
+  $("#todosDisplay").on("click", ".deleteBtn", function(event) {
+    todoList.deleteTodo(parseInt(event.target.parentNode.id));
+    view.displayTodos();
+  });
+
+  // deleteBtn
+  // event delegation
+  // $("ul").click(function(event) {
+  //   if (event.target.className === 'deleteBtn'){
+  //     todoList.deleteTodo(parseInt(event.target.parentNode.id));
+  //   } else if (event.target.className === 'completedBtn') {
+  //     todoList.toggleCompleted(parseInt(event.target.parentNode.id));
+  //   } else {
+  //     return true;
+  //   }
+  //   view.displayTodos();
+  // });
 });
