@@ -9,20 +9,18 @@
     <title>Todo List</title>
   </head>
   <body>
-    <div id="todolist">
-      <h1 id="titleText">Todo List</h1>
-
-      <div>
+    <div id="navbar">
+      <div class="navbarElement">
         <input id="addTodoTextInput" type="text" size="50">
-        <button id="addTodoBtn">Add</button>
-        <button id="toggleAll">Toggle All</button>
       </div>
+      <div class="navbarElement" id="addTodoBtn"></div>
+      <div class="navbarElement" id="toggleAll">Toggle All</div>
+    </div>
 
-      <div id="todosDisplay">
-      </div>
-
+    <div id="todosDisplay">
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="todo.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </body>
 </html>

@@ -58,43 +58,43 @@ $(document).ready(function(){
         todoList.todos.forEach(function(todo, position){
           if (todo.completed === true) {
             var listItem = $('<div/>')
+                            .addClass("item")
                             .attr({id : position})
-                            .append(this.createCompletedToggleButton("[X]"))
+                            .append(this.createCompletedToggleButton("completed"))
                             .append(this.createListItemField(todo.todoText))
                             .append(this.createEditButton())
                             .append(this.createDeleteButton());
-            todoListDiv.append(listItem);
+            todoListDiv.prepend(listItem);
           } else {
             var listItem = $('<div/>')
+                            .addClass("item")
                             .attr({id: position})
-                            .append(this.createCompletedToggleButton("[ ]"))
+                            .append(this.createCompletedToggleButton("incomplete"))
                             .append(this.createListItemField(todo.todoText))
                             .append(this.createEditButton())
                             .append(this.createDeleteButton());
-            todoListDiv.append(listItem);
+            todoListDiv.prepend(listItem);
           }
         }, this); // "this" from outer scope is passed in as the "this" inside
                   // the callback
       }
     },
     createDeleteButton: function() {
-      return $('<button/>')
-              .addClass('deleteBtn')
-              .text('Delete');
+      return $('<div/>')
+              .addClass('deleteBtn itemElement')
     },
     createCompletedToggleButton: function(completed) {
-      return $('<button/>')
-              .addClass('completedBtn')
-              .text(completed);
+      return $('<div/>')
+              .addClass('completedBtn itemElement ' + completed)
     },
     createEditButton: function() {
-      return $('<button/>')
-              .addClass('editBtn')
+      return $('<div/>')
+              .addClass('editBtn itemElement')
               .text("Edit")
     },
     createListItemField: function(listItemText) {
       return $('<input/>')
-              .addClass('listItem')
+              .addClass('listItem itemElement')
               .attr({
                 type: "text",
                 value: listItemText,

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="414 367 80 80">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6f72fd;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        filter: url(#teal_circle);
+      }
+    </style>
+    <filter id="teal_circle" x="414" y="367" width="80" height="80" filterUnits="userSpaceOnUse">
+      <feOffset dy="8" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.322"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.23" stop-color="#fff" stop-opacity="0.012"/>
+      <stop offset="0.36" stop-color="#fff" stop-opacity="0.039"/>
+      <stop offset="0.47" stop-color="#fff" stop-opacity="0.102"/>
+      <stop offset="0.57" stop-color="#fff" stop-opacity="0.18"/>
+      <stop offset="0.67" stop-color="#fff" stop-opacity="0.278"/>
+      <stop offset="0.75" stop-color="#fff" stop-opacity="0.412"/>
+      <stop offset="0.83" stop-color="#fff" stop-opacity="0.561"/>
+      <stop offset="0.91" stop-color="#fff" stop-opacity="0.741"/>
+      <stop offset="0.98" stop-color="#fff" stop-opacity="0.929"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="ui_pressed_FAB_light_teal" transform="translate(331 329)">
+    <g class="cls-4" transform="matrix(1, 0, 0, 1, -331, -329)">
+      <circle id="teal_circle-2" data-name="teal circle" class="cls-1" cx="28" cy="28" r="28" transform="translate(426 371)"/>
+    </g>
+    <path id="gradient_border" data-name="gradient border" class="cls-2" d="M3431,959.5a27.5,27.5,0,1,1-27.5,27.5,27.5,27.5,0,0,1,27.5-27.5m0-.5a28,28,0,1,0,28,28,28,28,0,0,0-28-28Z" transform="translate(-3308 -917)"/>
+    <path id="ic_add_white" class="cls-3" d="M3438,988h-6v6h-2v-6h-6v-2h6v-6h2v6h6Z" transform="translate(-3308 -917)"/>
+  </g>
+</svg>
