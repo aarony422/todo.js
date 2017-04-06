@@ -61,6 +61,7 @@ $(document).ready(function(){
                             .attr({id : position})
                             .append(this.createCompletedToggleButton("[X]"))
                             .append(this.createListItemField(todo.todoText))
+                            .append(this.createEditButton())
                             .append(this.createDeleteButton());
             todoListDiv.append(listItem);
           } else {
@@ -68,6 +69,7 @@ $(document).ready(function(){
                             .attr({id: position})
                             .append(this.createCompletedToggleButton("[ ]"))
                             .append(this.createListItemField(todo.todoText))
+                            .append(this.createEditButton())
                             .append(this.createDeleteButton());
             todoListDiv.append(listItem);
           }
@@ -85,12 +87,19 @@ $(document).ready(function(){
               .addClass('completedBtn')
               .text(completed);
     },
+    createEditButton: function() {
+      return $('<button/>')
+              .addClass('editBtn')
+              .text("Edit")
+    },
     createListItemField: function(listItemText) {
       return $('<input/>')
               .addClass('listItem')
               .attr({
                 type: "text",
-                value: listItemText
+                value: listItemText,
+                readonly: "true",
+                size: "50"
               })
     }
   };
@@ -155,16 +164,28 @@ $(document).ready(function(){
     view.displayTodos();
   });
 
-  // deleteBtn
-  // event delegation
-  // $("ul").click(function(event) {
-  //   if (event.target.className === 'deleteBtn'){
-  //     todoList.deleteTodo(parseInt(event.target.parentNode.id));
-  //   } else if (event.target.className === 'completedBtn') {
-  //     todoList.toggleCompleted(parseInt(event.target.parentNode.id));
-  //   } else {
-  //     return true;
-  //   }
-  //   view.displayTodos();
-  // });
+  // changeTodo/Edit
+  $("#todosDisplay").on("click", ".editBtn", function(event) {
+    var id = event.target.parentNode.id;
+    var $inputField = $("div#"+id + " > input");
+    var $editBtnClicked = $(event.target);
+    // make input editable
+    $inputField.attr("readonly", false);
+    // add class to identify edit button as being edited
+    $editBtnClicked.addClass("done");
+    // put focus on inputField
+    $inputField.select();
+    // change button to say done
+    $editBtnClicked.text("Done");
+  });
+
+  // done editing
+  $("#todosDisplay").on("click", ".editBtn.done", function(event) {
+    var id = event.target.parentNode.id;
+    var $inputField = $("div#"+id + " > input");
+    // changeTodo
+    todoList.changeTodo(parseInt(id), $inputField.val());
+    // refresh todoList
+    view.displayTodos();
+  })
 });
